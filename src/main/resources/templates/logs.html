@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="IT">
+<head th:replace="fragments/header :: head (pageTitle='User Logs')">
+</head>
+<body>
+<div class="container mt-5">
+    <h1>User Logs</h1>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Last Log: <span th:text="${lastLogType}"></span></h2>
+        <form th:action="@{/makeLog}" method="post">
+            <button type="submit" class="btn btn-primary" th:text="${nextLogType}"></button>
+        </form>
+    </div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Log Type</th>
+            <th>Timestamp</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="gateLog, iterStat : ${gateLogs}">
+            <td th:text="${iterStat.count}"></td>
+            <td th:text="${gateLog.getType().name()}"></td>
+            <td th:text="${#temporals.format(gateLog.getTimestamp(), 'dd-MM-yyyy HH:mm:ss')}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

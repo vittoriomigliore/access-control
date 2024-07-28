@@ -1,9 +1,17 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="it">
-<head>
-    <title>Spring Security Example</title>
+<head th:replace="fragments/header :: head (pageTitle='Home')">
 </head>
 <body>
-<h1>Welcome to the Home Page</h1></body>
-<p>Logged in as: <span th:text="${username}"></span></p>
+<div class="container mt-5">
+    <div class="jumbotron">
+        <h1 class="display-4">Welcome to the Home Page</h1>
+        <p class="lead">Logged in as: <span th:text="${username}"></span></p>
+        <hr class="my-4">
+        <p>
+            <a class="btn btn-primary btn-lg" href="/logs" role="button">View Logs</a>
+        </p>
+    </div>
+</div>
+</body>
 </html>
