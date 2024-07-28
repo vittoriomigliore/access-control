@@ -1,5 +1,6 @@
 package com.accesscontrol.controllers.api;
 
+import com.accesscontrol.controllers.UpdateUserRequest;
 import com.accesscontrol.entities.User;
 import com.accesscontrol.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,9 +38,9 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User userDetails) {
+    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody UpdateUserRequest updateUserRequest) {
         try {
-            User updatedUser = userService.updateUser(id, userDetails);
+            User updatedUser = userService.updateUser(id, updateUserRequest);
             return ResponseEntity.ok(updatedUser);
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
