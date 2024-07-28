@@ -1,15 +1,15 @@
 package com.accesscontrol.config;
 
-import com.accesscontrol.entities.User;
-import com.accesscontrol.repositories.UserRepository;
+import com.accesscontrol.entities.Role;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -17,14 +17,13 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     @Bean
-    public UserDetailsService userDetailsService(UserRepository userRepository) {
-        return username -> {
-            User user = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found"));
-            return org.springframework.security.core.userdetails.User.withUsername(user.getUsername())
-                    .password(user.getPassword())
-                    .roles(user.getRole().name())
-                    .build();
-        };
+    public UserDetailsService inMemoryUserDetailsManager() {
+        UserDetails user = org.springframework.security.core.userdetails.User.withUsername("defaultUser")
+                .password(passwordEncoder().encode("password"))
+                .roles(Role.USER.name())
+                .build();
+
+        return new InMemoryUserDetailsManager(user);
     }
 
     @Bean
@@ -37,7 +36,11 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
-                                .anyRequest().permitAll());
+                                .requestMatchers("/", "/index.html").authenticated()
+                                .requestMatchers("/api/**").authenticated()
+                                .anyRequest().permitAll())
+                .formLogin(form -> form.permitAll())
+                .logout(logout -> logout.permitAll());
         return http.build();
     }
 }
