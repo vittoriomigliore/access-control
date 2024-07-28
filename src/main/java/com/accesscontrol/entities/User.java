@@ -1,6 +1,7 @@
 package com.accesscontrol.entities;
 
 import jakarta.persistence.*;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Entity
 @Table(name = "users")
@@ -30,8 +31,8 @@ public class User {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassword(PasswordEncoder passwordEncoder, String password) {
+        this.password = passwordEncoder.encode(password);
     }
 
     public Role getRole() {

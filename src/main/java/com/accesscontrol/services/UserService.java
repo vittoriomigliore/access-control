@@ -1,5 +1,6 @@
 package com.accesscontrol.services;
 
+import com.accesscontrol.controllers.UpdateUserRequest;
 import com.accesscontrol.entities.User;
 import com.accesscontrol.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,6 @@ public class UserService {
     }
 
     public User saveUser(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 
@@ -30,17 +30,19 @@ public class UserService {
         return userRepository.findById(id);
     }
 
+    public Optional<User> findByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
     public List<User> findAll() {
         return userRepository.findAll();
     }
 
-    public User updateUser(Long id, User userDetails) {
+    public User updateUser(Long id, UpdateUserRequest updateUserRequest) {
         return userRepository.findById(id).map(user -> {
-            user.setUsername(userDetails.getUsername());
-            if (!userDetails.getPassword().isEmpty()) {
-                user.setPassword(passwordEncoder.encode(userDetails.getPassword()));
-            }
-            user.setRole(userDetails.getRole());
+            user.setUsername(updateUserRequest.getUsername());
+            user.setPassword(passwordEncoder, updateUserRequest.getPassword());
+            user.setRole(updateUserRequest.getRole());
             return userRepository.save(user);
         }).orElseThrow(() -> new RuntimeException("User not found"));
     }
