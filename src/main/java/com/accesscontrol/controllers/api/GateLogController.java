@@ -1,4 +1,4 @@
-package com.accesscontrol.controllers;
+package com.accesscontrol.controllers.api;
 
 import com.accesscontrol.entities.GateLog;
 import com.accesscontrol.entities.GateLogType;
