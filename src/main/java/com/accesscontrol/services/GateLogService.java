@@ -49,4 +49,13 @@ public class GateLogService {
         List<GateLog> sortedList = gateLogList.stream().sorted(Comparator.comparing(GateLog::getTimestamp)).toList();
         return sortedList.get(sortedList.size() - 1).getType() == GateLogType.ENTRANCE ? GateLogType.EXIT : GateLogType.ENTRANCE;
     }
+
+    public void deleteGateLogById(Long gateLogId) {
+        GateLog gateLog = gateLogRepository.findById(String.valueOf(gateLogId)).orElseThrow();
+        deleteGateLog(gateLog);
+    }
+
+    private void deleteGateLog(GateLog gateLog) {
+        gateLogRepository.delete(gateLog);
+    }
 }
