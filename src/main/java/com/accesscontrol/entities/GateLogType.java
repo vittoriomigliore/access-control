@@ -1,5 +1,14 @@
 package com.accesscontrol.entities;
 
 public enum GateLogType {
-    ENTRANCE, EXIT
+    ENTRANCE,
+    EXIT;
+
+    public String getValue() {
+        return switch (this) {
+            case ENTRANCE -> "Entrance";
+            case EXIT -> "Exit";
+            default -> null;
+        };
+    }
 }

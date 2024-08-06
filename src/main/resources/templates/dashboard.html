@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{fragments/head :: head (pageTitle='Dashboard')}">
+</head>
+<body>
+<div class="container-scroller">
+    <nav th:replace="~{fragments/navbar :: nav}"></nav>
+    <div class="container-fluid page-body-wrapper">
+        <nav th:replace="~{fragments/sidebar :: nav}"></nav>
+        <div class="main-panel">
+            <div class="content-wrapper">
+                <div class="row">
+                    <div class="col-md-12 grid-margin">
+                        <div class="row">
+                            <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                                <h3 class="font-weight-bold">Welcome <span th:text="${username}"></span></h3>
+                                <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have <span
+                                        class="text-primary">3 unread alerts!</span></h6>
+                            </div>
+                            <div class="col-12 col-xl-4">
+                                <div class="justify-content-end d-flex">
+                                    <form th:action="@{/saveLog}" method="post">
+                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                            <button class="btn btn-outline-secondary" type="button">
+                                                <i class="mdi mdi-calendar"></i> Today <span
+                                                    th:text="${#temporals.format(now, 'dd MMM yyyy')}"></span>
+                                            </button>
+                                            <button class="btn btn-primary" type="submit">
+                                                <span th:text="${nextLogType.getValue()}"></span>
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <p class="card-title">Today Logs</p>
+                                    <a href="#" class="text-info">View all</a>
+                                </div>
+                                <p class="font-weight-500">The total number of sessions within the date range. It is the
+                                    period time a
+                                    user is actively engaged with your website, page or app, etc</p>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="table-responsive">
+                                            <table id="example" class="display expandable-table" style="width:100%">
+                                                <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Log Type</th>
+                                                    <th>Timestamp</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr th:each="gateLog, iterStat : ${gateLogs}">
+                                                    <td th:text="${iterStat.count}"></td>
+                                                    <td th:text="${gateLog.getType().name()}"></td>
+                                                    <td th:text="${#temporals.format(gateLog.getTimestamp(), 'dd MMM yyyy HH:mm:ss')}"></td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer th:replace="~{fragments/footer :: footer}"></footer>
+        </div>
+    </div>
+</div>
+</body>
+</html>

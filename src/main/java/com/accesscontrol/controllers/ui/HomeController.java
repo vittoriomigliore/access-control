@@ -1,4 +1,4 @@
-package com.accesscontrol.controllers;
+package com.accesscontrol.controllers.ui;
 
 import com.accesscontrol.entities.GateLog;
 import com.accesscontrol.entities.GateLogType;
@@ -12,45 +12,43 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
-public class LogsController {
+public class HomeController {
 
     private final GateLogService gateLogService;
     private final UserService userService;
 
-    private GateLogType nextLogType;
-
-    public LogsController(GateLogService gateLogService, UserService userService) {
+    public HomeController(GateLogService gateLogService, UserService userService) {
         this.gateLogService = gateLogService;
         this.userService = userService;
     }
 
-    @GetMapping("/logs")
-    public String getUserLogs(Model model) {
+    @GetMapping("/")
+    public String home(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
-        User user = userService.findByUsername(username).orElseThrow(() -> new IllegalArgumentException("User not found"));
-        List<GateLog> logs = gateLogService.findGateLogsByUser(user);
-
-        nextLogType = gateLogService.nextUserLogType(logs);
-
-        model.addAttribute("gateLogs", logs);
+        LocalDate now = LocalDate.now();
+        List<GateLog> gateLogList = gateLogService.findGateLogsByUser(userService.findByUsername(username).orElseThrow(() -> new IllegalArgumentException("User not found")));
+        GateLogType nextLogType = gateLogService.nextUserLogType(gateLogList);
+        model.addAttribute("username", username);
+        model.addAttribute("now", now);
+        model.addAttribute("gateLogs", gateLogList);
         model.addAttribute("nextLogType", nextLogType);
-
-        return "logs";
+        return "dashboard";
     }
 
-    @PostMapping("/makeLog")
-    public String addLog() {
+    @PostMapping("/saveLog")
+    public String saveLog() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
 
         User user = userService.findByUsername(username).orElseThrow(() -> new IllegalArgumentException("User not found"));
 
-        gateLogService.saveGateLog(user, nextLogType);
+        gateLogService.saveGateLog(user);
 
-        return "redirect:/logs";
+        return "redirect:/";
     }
 }

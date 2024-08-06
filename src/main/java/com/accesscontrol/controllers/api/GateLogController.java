@@ -1,7 +1,6 @@
 package com.accesscontrol.controllers.api;
 
 import com.accesscontrol.entities.GateLog;
-import com.accesscontrol.entities.GateLogType;
 import com.accesscontrol.entities.User;
 import com.accesscontrol.services.GateLogService;
 import com.accesscontrol.services.UserService;
@@ -23,9 +22,9 @@ public class GateLogController {
     }
 
     @PostMapping("/log")
-    public GateLog logEntryExit(@RequestParam Long userId, @RequestParam GateLogType type) {
+    public GateLog saveLog(@RequestParam Long userId) {
         User user = userService.findById(userId).orElseThrow(() -> new IllegalArgumentException("User not found"));
-        return gateLogService.saveGateLog(user, type);
+        return gateLogService.saveGateLog(user);
     }
 
     @GetMapping("/{userId}")

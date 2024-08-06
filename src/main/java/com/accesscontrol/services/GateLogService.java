@@ -21,7 +21,13 @@ public class GateLogService {
         this.gateLogRepository = gateLogRepository;
     }
 
-    public GateLog saveGateLog(User user, GateLogType type) {
+    public GateLog saveGateLog(User user) {
+        List<GateLog> logs = findGateLogsByUser(user);
+        GateLogType type = nextUserLogType(logs);
+        return saveGateLog(user, type);
+    }
+
+    private GateLog saveGateLog(User user, GateLogType type) {
         GateLog gateLog = new GateLog();
         gateLog.setUser(user);
         gateLog.setType(type);
