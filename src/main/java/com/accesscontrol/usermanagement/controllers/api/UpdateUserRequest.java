@@ -1,6 +1,6 @@
-package com.accesscontrol.controllers;
+package com.accesscontrol.usermanagement.controllers.api;
 
-import com.accesscontrol.entities.Role;
+import com.accesscontrol.usermanagement.entities.Role;
 
 public class UpdateUserRequest {
     private final String username;

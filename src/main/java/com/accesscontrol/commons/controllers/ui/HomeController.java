@@ -1,10 +1,10 @@
-package com.accesscontrol.controllers.ui;
+package com.accesscontrol.commons.controllers.ui;
 
-import com.accesscontrol.entities.GateLog;
-import com.accesscontrol.entities.GateLogType;
-import com.accesscontrol.entities.User;
-import com.accesscontrol.services.GateLogService;
-import com.accesscontrol.services.UserService;
+import com.accesscontrol.gatelog.entities.GateLog;
+import com.accesscontrol.gatelog.entities.GateLogType;
+import com.accesscontrol.usermanagement.entities.User;
+import com.accesscontrol.gatelog.services.GateLogService;
+import com.accesscontrol.usermanagement.services.UserService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;

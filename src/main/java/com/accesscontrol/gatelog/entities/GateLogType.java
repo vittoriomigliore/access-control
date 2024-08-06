@@ -1,4 +1,4 @@
-package com.accesscontrol.entities;
+package com.accesscontrol.gatelog.entities;
 
 public enum GateLogType {
     ENTRANCE,

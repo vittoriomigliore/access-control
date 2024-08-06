@@ -1,9 +1,9 @@
-package com.accesscontrol.controllers.api;
+package com.accesscontrol.gatelog.controllers.api;
 
-import com.accesscontrol.entities.GateLog;
-import com.accesscontrol.entities.User;
-import com.accesscontrol.services.GateLogService;
-import com.accesscontrol.services.UserService;
+import com.accesscontrol.gatelog.entities.GateLog;
+import com.accesscontrol.usermanagement.entities.User;
+import com.accesscontrol.gatelog.services.GateLogService;
+import com.accesscontrol.usermanagement.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

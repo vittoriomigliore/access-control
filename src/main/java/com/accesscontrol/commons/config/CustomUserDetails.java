@@ -1,6 +1,6 @@
-package com.accesscontrol.config;
+package com.accesscontrol.commons.config;
 
-import com.accesscontrol.entities.User;
+import com.accesscontrol.usermanagement.entities.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

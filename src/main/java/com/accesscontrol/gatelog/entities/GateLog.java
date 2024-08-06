@@ -1,5 +1,6 @@
-package com.accesscontrol.entities;
+package com.accesscontrol.gatelog.entities;
 
+import com.accesscontrol.usermanagement.entities.User;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;

@@ -1,8 +1,8 @@
-package com.accesscontrol.config;
+package com.accesscontrol.commons.config;
 
-import com.accesscontrol.entities.Role;
-import com.accesscontrol.entities.User;
-import com.accesscontrol.services.UserService;
+import com.accesscontrol.usermanagement.entities.Role;
+import com.accesscontrol.usermanagement.entities.User;
+import com.accesscontrol.usermanagement.services.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

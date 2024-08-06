@@ -1,6 +1,6 @@
-package com.accesscontrol.repositories;
+package com.accesscontrol.usermanagement.repositories;
 
-import com.accesscontrol.entities.User;
+import com.accesscontrol.usermanagement.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

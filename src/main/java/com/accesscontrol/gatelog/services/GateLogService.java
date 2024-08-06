@@ -1,9 +1,9 @@
-package com.accesscontrol.services;
+package com.accesscontrol.gatelog.services;
 
-import com.accesscontrol.entities.GateLog;
-import com.accesscontrol.entities.GateLogType;
-import com.accesscontrol.entities.User;
-import com.accesscontrol.repositories.GateLogRepository;
+import com.accesscontrol.usermanagement.entities.User;
+import com.accesscontrol.gatelog.entities.GateLog;
+import com.accesscontrol.gatelog.entities.GateLogType;
+import com.accesscontrol.gatelog.repositories.GateLogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

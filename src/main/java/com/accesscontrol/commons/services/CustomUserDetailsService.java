@@ -1,8 +1,8 @@
-package com.accesscontrol.services;
+package com.accesscontrol.commons.services;
 
-import com.accesscontrol.config.CustomUserDetails;
-import com.accesscontrol.entities.User;
-import com.accesscontrol.repositories.UserRepository;
+import com.accesscontrol.commons.config.CustomUserDetails;
+import com.accesscontrol.usermanagement.entities.User;
+import com.accesscontrol.usermanagement.repositories.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

@@ -1,8 +1,8 @@
-package com.accesscontrol.services;
+package com.accesscontrol.usermanagement.services;
 
-import com.accesscontrol.controllers.UpdateUserRequest;
-import com.accesscontrol.entities.User;
-import com.accesscontrol.repositories.UserRepository;
+import com.accesscontrol.usermanagement.controllers.api.UpdateUserRequest;
+import com.accesscontrol.usermanagement.entities.User;
+import com.accesscontrol.usermanagement.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

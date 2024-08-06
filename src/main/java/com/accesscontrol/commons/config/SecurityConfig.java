@@ -1,6 +1,6 @@
-package com.accesscontrol.config;
+package com.accesscontrol.commons.config;
 
-import com.accesscontrol.services.CustomUserDetailsService;
+import com.accesscontrol.commons.services.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;

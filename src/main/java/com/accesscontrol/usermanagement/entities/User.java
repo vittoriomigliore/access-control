@@ -1,11 +1,13 @@
-package com.accesscontrol.entities;
+package com.accesscontrol.usermanagement.entities;
 
 import jakarta.persistence.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.io.Serializable;
+
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
