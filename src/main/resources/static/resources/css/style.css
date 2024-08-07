@@ -21291,13 +21291,13 @@ code {
   z-index: -1;
 }
 .performance-overview-carousel .carousel-inner .item .icon.icon-a::before {
-  content: url("../../images/dashboard/shape-1.svg");
+  content: url("../images/dashboard/shape-1.svg");
 }
 .performance-overview-carousel .carousel-inner .item .icon.icon-b::before {
-  content: url("../../images/dashboard/shape-1.svg");
+  content: url("../images/dashboard/shape-1.svg");
 }
 .performance-overview-carousel .carousel-inner .item .icon.icon-c::before {
-  content: url("../../images/dashboard/shape-3.svg");
+  content: url("../images/dashboard/shape-3.svg");
 }
 .performance-overview-carousel .carousel-control-prev,
 .performance-overview-carousel .carousel-control-next {
@@ -23863,15 +23863,15 @@ table.dataTable tbody td.select-checkbox:after {
 /* === Landing screens === */
 /* Auth */
 .auth .login-half-bg {
-  background: url("../../images/auth/login-bg.jpg");
+  background: url("../images/auth/login-bg.jpg");
   background-size: cover;
 }
 .auth .register-half-bg {
-  background: url("../../images/auth/register-bg.jpg");
+  background: url("../images/auth/register-bg.jpg");
   background-size: cover;
 }
 .auth.lock-full-bg {
-  background: url("../../images/auth/lockscreen-bg.jpg");
+  background: url("../images/auth/lockscreen-bg.jpg");
   background-size: cover;
 }
 .auth .lock-profile-img {
