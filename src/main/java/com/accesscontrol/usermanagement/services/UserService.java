@@ -50,4 +50,9 @@ public class UserService {
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
     }
+
+    public List<String> userNameList(String filter) {
+        List<User> userList = userRepository.findByFilter(filter);
+        return userList.stream().map(User::getUsername).toList();
+    }
 }
